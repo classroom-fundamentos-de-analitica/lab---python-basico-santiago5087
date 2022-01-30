@@ -85,7 +85,6 @@ def pregunta_03():
                     letter[1] += int(row[1])
         for itemLetter in letters:
             lettersTupple.append((itemLetter[0], itemLetter[1]))
-        print(lettersTupple)
         return lettersTupple
 
 def pregunta_04():
@@ -193,7 +192,6 @@ def pregunta_06():
             for myDictItem in myDict:
                 itemsDictRow = row[4].split(',')
                 for keyItemRow in itemsDictRow:
-                    print(keyItemRow)
                     if (myDictItem[0] == keyItemRow.split(':')[0]):
                         if (int(keyItemRow.split(':')[1]) < myDictItem[1]):
                             myDictItem[1] = int(keyItemRow.split(':')[1])
@@ -273,7 +271,7 @@ def pregunta_08():
                         myItemNumber[1].append(row[0])
         for myItemNumbers in myNumbers:
             myNumbersTupple.append((myItemNumbers[0], sorted(myItemNumbers[1])))
-        return myNumbersTupple
+        return sorted(myNumbersTupple)
 
 def pregunta_09():
     """
