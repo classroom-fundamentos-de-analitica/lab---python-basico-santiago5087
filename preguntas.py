@@ -272,7 +272,7 @@ def pregunta_08():
                     if (exist == False):
                         myItemNumber[1].append(row[0])
         for myItemNumbers in myNumbers:
-            myNumbersTupple.append((myItemNumbers[0], myItemNumbers[1]))
+            myNumbersTupple.append((myItemNumbers[0], sorted(myItemNumbers[1])))
         return myNumbersTupple
 
 def pregunta_09():
