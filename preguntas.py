@@ -12,6 +12,9 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+from calendar import month
+import csv
+from pickle import FALSE
 
 def pregunta_01():
     """
@@ -21,8 +24,13 @@ def pregunta_01():
     214
 
     """
-    return
 
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        totalSum = 0
+        for row in dataCSVFile:
+            totalSum += int(row[1])
+        return totalSum
 
 def pregunta_02():
     """
@@ -39,7 +47,17 @@ def pregunta_02():
     ]
 
     """
-    return
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        letters = [["A", 0], ["B", 0], ["C", 0], ["D", 0], ["E", 0]]
+        lettersTupple = []
+        for row in dataCSVFile:
+            for letter in letters:
+                if (letter[0] == row[0]):
+                    letter[1] += 1
+        for itemLetter in letters:
+            lettersTupple.append((itemLetter[0], itemLetter[1]))
+        return lettersTupple
 
 
 def pregunta_03():
@@ -57,8 +75,18 @@ def pregunta_03():
     ]
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        letters = [["A", 0], ["B", 0], ["C", 0], ["D", 0], ["E", 0]]
+        lettersTupple = []
+        for row in dataCSVFile:
+            for letter in letters:
+                if (letter[0] == row[0]):
+                    letter[1] += int(row[1])
+        for itemLetter in letters:
+            lettersTupple.append((itemLetter[0], itemLetter[1]))
+        print(lettersTupple)
+        return lettersTupple
 
 def pregunta_04():
     """
@@ -82,8 +110,17 @@ def pregunta_04():
     ]
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        months = [["01", 0], ["02", 0], ["03", 0], ["04", 0], ["05", 0], ["06", 0], ["07", 0], ["08", 0], ["09", 0], ["10", 0], ["11", 0], ["12", 0]]
+        monthsTupple = []
+        for row in dataCSVFile:
+            for uniqueMonth in months:
+                if (uniqueMonth[0] == row[2].split('-')[1]):
+                    uniqueMonth[1] += 1
+        for uniqueMonth in months:
+            monthsTupple.append((uniqueMonth[0], uniqueMonth[1]))
+        return monthsTupple
 
 def pregunta_05():
     """
@@ -100,8 +137,20 @@ def pregunta_05():
     ]
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        letters = [["A", 0, 100000], ["B", 0, 100000], ["C", 0, 100000], ["D", 0, 100000], ["E", 0, 100000]]
+        lettersTupple = []
+        for row in dataCSVFile:
+            for letter in letters:
+                if (letter[0] == row[0]):
+                    if (int(row[1]) > letter[1]):
+                        letter[1] = int(row[1])
+                    if (int(row[1]) < letter[2]):
+                        letter[2] = int(row[1])
+        for itemLetter in letters:
+            lettersTupple.append((itemLetter[0], itemLetter[1], itemLetter[2]))
+        return lettersTupple
 
 def pregunta_06():
     """
@@ -125,8 +174,34 @@ def pregunta_06():
     ]
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        myDict = [
+            ["aaa", 100000, 0],
+            ["bbb", 100000, 0],
+            ["ccc", 100000, 0],
+            ["ddd", 100000, 0],
+            ["eee", 100000, 0],
+            ["fff", 100000, 0],
+            ["ggg", 100000, 0],
+            ["hhh", 100000, 0],
+            ["iii", 100000, 0],
+            ["jjj", 100000, 0]
+        ]
+        myDictTupple = []
+        for row in dataCSVFile:
+            for myDictItem in myDict:
+                itemsDictRow = row[4].split(',')
+                for keyItemRow in itemsDictRow:
+                    print(keyItemRow)
+                    if (myDictItem[0] == keyItemRow.split(':')[0]):
+                        if (int(keyItemRow.split(':')[1]) < myDictItem[1]):
+                            myDictItem[1] = int(keyItemRow.split(':')[1])
+                        if (int(keyItemRow.split(':')[1]) > myDictItem[2]):
+                            myDictItem[2] = int(keyItemRow.split(':')[1])
+        for itemmyDict in myDict:
+            myDictTupple.append((itemmyDict[0], itemmyDict[1], itemmyDict[2]))
+        return myDictTupple
 
 def pregunta_07():
     """
@@ -149,8 +224,17 @@ def pregunta_07():
     ]
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        myNumbers = [[0, []], [1, []], [2, []], [3, []], [4, []], [5, []], [6, []], [7, []], [8, []], [9, []]]
+        myNumbersTupple = []
+        for row in dataCSVFile:
+            for myItemNumber in myNumbers:
+                if (myItemNumber[0] == int(row[1])):
+                    myItemNumber[1].append(row[0])
+        for myItemNumbers in myNumbers:
+            myNumbersTupple.append((myItemNumbers[0], myItemNumbers[1]))
+        return myNumbersTupple
 
 def pregunta_08():
     """
@@ -174,8 +258,22 @@ def pregunta_08():
     ]
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        myNumbers = [[0, []], [1, []], [2, []], [3, []], [4, []], [5, []], [6, []], [7, []], [8, []], [9, []]]
+        myNumbersTupple = []
+        for row in dataCSVFile:
+            for myItemNumber in myNumbers:
+                if (myItemNumber[0] == int(row[1])):
+                    exist = False
+                    for letter in myItemNumber[1]:
+                        if (letter == row[0]):
+                            exist = True
+                    if (exist == False):
+                        myItemNumber[1].append(row[0])
+        for myItemNumbers in myNumbers:
+            myNumbersTupple.append((myItemNumbers[0], myItemNumbers[1]))
+        return myNumbersTupple
 
 def pregunta_09():
     """
@@ -197,8 +295,27 @@ def pregunta_09():
     }
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        myDict = {
+            "aaa": 0,
+            "bbb": 0,
+            "ccc": 0,
+            "ddd": 0,
+            "eee": 0,
+            "fff": 0,
+            "ggg": 0,
+            "hhh": 0,
+            "iii": 0,
+            "jjj": 0
+        }
+        for row in dataCSVFile:
+            for myDictItem in myDict:
+                itemsDictRow = row[4].split(',')
+                for keyItemRow in itemsDictRow:
+                    if (myDictItem == keyItemRow.split(':')[0]):
+                        myDict[myDictItem] += 1
+        return myDict
 
 def pregunta_10():
     """
@@ -218,8 +335,14 @@ def pregunta_10():
 
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        lettersTupple = []
+        for row in dataCSVFile:
+            itemsLength1 = len(row[3].split(','))
+            itemsLength2 = len(row[4].split(','))
+            lettersTupple.append((row[0], itemsLength1, itemsLength2))
+        return lettersTupple
 
 def pregunta_11():
     """
@@ -239,8 +362,22 @@ def pregunta_11():
 
 
     """
-    return
-
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        lettersDict = {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 0,
+        "e": 0,
+        "f": 0,
+        "g": 0
+        }
+        for row in dataCSVFile:
+            items = row[3].split(',')
+            for letter in items:
+                lettersDict[letter] += int(row[1])
+        return lettersDict
 
 def pregunta_12():
     """
@@ -257,4 +394,19 @@ def pregunta_12():
     }
 
     """
-    return
+    with open('data.csv', newline='') as csvfile:
+        dataCSVFile = csv.reader(csvfile, delimiter='	')
+        lettersDict = {
+        "A": 0,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "E": 0
+        }
+        for row in dataCSVFile:
+            items = row[4].split(',')
+            for letterKey in lettersDict:
+                if (letterKey == row[0]):
+                    for myItem in items:
+                        lettersDict[letterKey] += int(myItem.split(':')[1])
+        return lettersDict
